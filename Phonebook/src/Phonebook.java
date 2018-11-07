@@ -11,6 +11,7 @@ public class Phonebook {
     static String name = null;
     static String phone = null;
     static String contact = null;
+    static int n = 0;
 
     public static void main(String args[])throws IOException {
 
@@ -33,18 +34,23 @@ public class Phonebook {
 
         sc = new Scanner(new InputStreamReader(System.in));
 
-        System.out.println("Введите имя контакта:");
-        name = sc.next();
+            System.out.println("Введите количество контактов:");
+            n = sc.nextInt();
 
-        System.out.println("Введите номер:");
-        phone = sc.next();
+            for (int i = 0; i < n; i++) {
+                System.out.println("Введите имя контакта:");
+                name = sc.next();
 
-        contact = name + "; " + phone;
+                System.out.println("Введите номер:");
+                phone = sc.next();
+            }
 
-        // Запись содержимого в файл
-        writer.write(contact + "\r");
-        writer.flush();
-        writer.close();
+                contact = name + "; " + phone;
+
+                // Запись содержимого в файл
+                writer.write(contact + "\r");
+                writer.flush();
+                writer.close();
 
         //for (String x:lines)
         //{
@@ -52,14 +58,12 @@ public class Phonebook {
         if(lines.contains(contact)) {
 
             try {
-                throw new Exception("My one time exception with some message!");
+                throw new Exception("Данный контакт уже есть в телефонной книге!");
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
         }
         //}
-
-
     }
 }
